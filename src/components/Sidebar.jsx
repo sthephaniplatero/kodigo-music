@@ -19,5 +19,5 @@ function Sidebar() {
   );
 }
 
-// 🔹 Export default
+
 export default Sidebar;
