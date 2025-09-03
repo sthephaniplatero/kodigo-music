@@ -89,7 +89,7 @@ const artistasPopulares = [
 function Home() {
   // Estado para canciones en el MusicPlayer
   const [tracks, setTracks] = useState([
-    { title: "Blinding Lights", artist: "The Weeknd", url: "https://audio.com/eiranzoolive/audio/the-weeknd-blinding-lights-official-audio" },
+    { title: "Blinding Lights", artist: "The Weeknd", url: "/songs/The Weeknd - Blinding Lights (Official Audio).mp3" },
     { title: "Levitating", artist: "Dua Lipa", url: "/songs/Dua Lipa - Levitating Featuring DaBaby (Official Music Video).mp3" },
   ]);
 
