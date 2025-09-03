@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Sidebar() {
   const playlists = ["Favoritos", "Workout", "Pop"];
@@ -7,10 +8,19 @@ function Sidebar() {
     <aside className="col-12 col-md-3 mb-4">
       <div className="card">
         <div className="card-body">
-          <h6>Biblioteca</h6>
+          {/* Breadcrumbs */}
+          <nav aria-label="breadcrumb">
+            <ol className="breadcrumb mb-3">
+              <li className="breadcrumb-item"><Link to="/">Inicio</Link></li>
+            </ol>
+          </nav>
+
+          
           <ul className="list-unstyled">
             {playlists.map((pl, i) => (
-              <li key={i} className="py-1">{pl}</li>
+              <li key={i} className="py-1">
+                <Link to={`/${pl.toLowerCase()}`}>{pl}</Link>
+              </li>
             ))}
           </ul>
         </div>
@@ -18,6 +28,5 @@ function Sidebar() {
     </aside>
   );
 }
-
 
 export default Sidebar;

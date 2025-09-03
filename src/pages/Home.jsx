@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Sidebar from "../components/Sidebar";
 import MusicPlayer from "../components/MusicPlayer";
 import SongCard from "../components/SongCard";
 import ArtistCard from "../components/ArtistCard";
@@ -87,49 +86,40 @@ const artistasPopulares = [
 ];
 
 function Home() {
-  // Estado para canciones en el MusicPlayer
   const [tracks, setTracks] = useState([
     { title: "Blinding Lights", artist: "The Weeknd", url: "/songs/The Weeknd - Blinding Lights (Official Audio).mp3" },
     { title: "Levitating", artist: "Dua Lipa", url: "/songs/Dua Lipa - Levitating Featuring DaBaby (Official Music Video).mp3" },
   ]);
 
-  // Función para cambiar la canción al hacer click en un álbum
   const handlePlaySong = (album) => {
     setTracks([{ title: album.title, artist: album.artist, url: album.url }]);
   };
 
   return (
-    <div className="d-flex">
-      {/* Sidebar */}
-      <Sidebar playlists={playlists} />
+    <div className="p-3">
+      <h2>Álbumes Populares</h2>
+      <div className="d-flex flex-wrap">
+        {albumsPopulares.map((album, i) => (
+          <SongCard
+            key={i}
+            title={album.title}
+            artist={album.artist}
+            cover={album.cover}
+            onClick={() => handlePlaySong(album)}
+          />
+        ))}
+      </div>
 
-      {/* Main */}
-      <main className="flex-fill p-3">
-        <h2>Álbumes Populares</h2>
-        <div className="d-flex flex-wrap">
-          {albumsPopulares.map((album, i) => (
-            <SongCard
-              key={i}
-              title={album.title}
-              artist={album.artist}
-              cover={album.cover}
-              onClick={() => handlePlaySong(album)}
-            />
-          ))}
-        </div>
+      <h2 className="mt-4">Artistas Populares</h2>
+      <div className="d-flex flex-wrap">
+        {artistasPopulares.map((artist, i) => (
+          <ArtistCard key={i} name={artist.name} image={artist.image} />
+        ))}
+      </div>
 
-        <h2 className="mt-4">Artistas Populares</h2>
-        <div className="d-flex flex-wrap">
-          {artistasPopulares.map((artist, i) => (
-            <ArtistCard key={i} name={artist.name} image={artist.image} />
-          ))}
-        </div>
-
-        {/* Music Player */}
-        <div className="mt-4">
-          <MusicPlayer tracks={tracks} />
-        </div>
-      </main>
+      <div className="mt-4">
+        <MusicPlayer tracks={tracks} />
+      </div>
     </div>
   );
 }
