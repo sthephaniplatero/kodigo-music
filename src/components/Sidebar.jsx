@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Sidebar() {
-  const playlists = ["Favoritos", "Workout", "Chill", "Pop", "Rock"];
+  const playlists = ["Favoritos", "Workout", "Pop"];
 
   return (
     <aside className="col-12 col-md-3 mb-4">

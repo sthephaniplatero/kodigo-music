@@ -4,7 +4,7 @@ const MusicPlayer = ({ tracks = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const audioRef = useRef(null);
 
-  // Evitar errores si no hay canciones
+
   if (!tracks || tracks.length === 0) return <div>No hay canciones disponibles</div>;
 
   const currentTrack = tracks[currentIndex];
@@ -19,7 +19,7 @@ const MusicPlayer = ({ tracks = [] }) => {
     setCurrentIndex((prev) => (prev - 1 + tracks.length) % tracks.length);
   };
 
-  // Reproducir automáticamente al cambiar la canción
+  
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.pause();
