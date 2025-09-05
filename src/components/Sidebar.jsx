@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+// src/components/Sidebar.jsx
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
   const playlists = ["Favoritos", "Workout", "Pop"];
@@ -15,11 +16,13 @@ function Sidebar() {
             </ol>
           </nav>
 
-          
+          {/* Playlists */}
           <ul className="list-unstyled">
             {playlists.map((pl, i) => (
               <li key={i} className="py-1">
-                <Link to={`/${pl.toLowerCase()}`}>{pl}</Link>
+                <Link to={`/${pl.toLowerCase()}`} className="text-decoration-none">
+                  {pl}
+                </Link>
               </li>
             ))}
           </ul>

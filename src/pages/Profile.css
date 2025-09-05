@@ -1,0 +1,35 @@
+.profile-container {
+  max-width: 900px;
+  margin: auto;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 3px solid #0d6efd; /* borde azul profesional */
+}
+
+.profile-card {
+  background-color: #f8f9fa;
+}
+
+.profile-logout-btn {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.song-card img {
+  height: 180px;
+  object-fit: cover;
+}
+
+.song-card h5 {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.song-card p {
+  font-size: 0.9rem;
+  color: #6c757d;
+}

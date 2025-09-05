@@ -1,0 +1,19 @@
+/* Para títulos (máx. 2 líneas) */
+.song-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Permite hasta 2 líneas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+}
+
+/* Para artistas (máx. 1 línea) */
+.song-artist {
+  display: -webkit-box;
+  -webkit-line-clamp: 0; /* Solo 1 línea */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #555;
+}

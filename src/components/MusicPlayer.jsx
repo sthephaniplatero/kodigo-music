@@ -1,42 +1,36 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useContext, useRef, useEffect } from "react";
+import { MusicPlayerContext } from "../contexts/MusicPlayerContext";
 
-const MusicPlayer = ({ tracks = [] }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+const MusicPlayer = () => {
+  const { tracks, currentIndex, setCurrentIndex } = useContext(MusicPlayerContext);
   const audioRef = useRef(null);
 
-
-  if (!tracks || tracks.length === 0) return <div>No hay canciones disponibles</div>;
+  // Validamos que existan tracks y que el índice sea válido
+  if (!tracks || tracks.length === 0 || !tracks[currentIndex]) return null;
 
   const currentTrack = tracks[currentIndex];
 
-  // Función para ir a la siguiente canción
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % tracks.length);
-  };
+  const handleNext = () => setCurrentIndex((prev) => (prev + 1) % tracks.length);
+  const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + tracks.length) % tracks.length);
 
-  // Función para ir a la canción anterior
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + tracks.length) % tracks.length);
-  };
-
-  
   useEffect(() => {
-    if (audioRef.current) {
+    // Solo reproducimos si audioRef está montado
+    if (audioRef.current && currentTrack) {
       audioRef.current.pause();
       audioRef.current.load();
       audioRef.current.play().catch(() => {});
     }
-  }, [currentIndex, currentTrack]);
+  }, [currentTrack]);
 
   return (
-    <div className="music-player border p-2 bg-light rounded">
-      <p>
+    <div className="music-player fixed-bottom bg-light border p-2 d-flex justify-content-between align-items-center">
+      <div>
         <strong>{currentTrack.title}</strong> - {currentTrack.artist}
-      </p>
-      <audio ref={audioRef} src={currentTrack.url} controls autoPlay className="w-100" />
-      <div className="mt-2 d-flex justify-content-between">
-        <button className="btn btn-sm btn-primary" onClick={handlePrev}>⏮ Prev</button>
-        <button className="btn btn-sm btn-primary" onClick={handleNext}>Next ⏭</button>
+      </div>
+      <audio ref={audioRef} src={currentTrack.url} controls className="flex-grow-1 mx-2" />
+      <div>
+        <button className="btn btn-sm btn-primary me-1" onClick={handlePrev}>⏮</button>
+        <button className="btn btn-sm btn-primary" onClick={handleNext}>⏭</button>
       </div>
     </div>
   );
